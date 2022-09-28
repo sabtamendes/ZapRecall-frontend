@@ -4,6 +4,9 @@ export default function Card({ perguntas, index }) {
     const [cartaoFechado, setCartaoFechado] = useState(true);
     const [mostrarPergunta, setMostrarPergunta] = useState(false);
     const [mostrarResposta, setMostrarResposta] = useState(false);
+    const [corVermelho, setCorVermelho] = useState(false);
+    const [corLaranja, setCorLaranja] = useState(false);
+    const [corVerde, setCorVerde] = useState(false);
     function showTheQuestion(index) {
         setMostrarPergunta(true);
         setCartaoFechado(false);
@@ -15,30 +18,46 @@ export default function Card({ perguntas, index }) {
         setMostrarPergunta(false);
         setCartaoFechado(false);
     }
+    function showCardAnswerRed() {
+        setMostrarResposta(false);
+        setCorVermelho(true);
+        console.log("Clicado");
+    }
     return (
         <>
-            {cartaoFechado && <PerguntaFechada>
-                {perguntas.pergunta}
-                <img onClick={() => showTheQuestion(index)} src={perguntas.autoplay}
-                    alt={perguntas.alt} />
-            </PerguntaFechada>
+            {cartaoFechado &&
+                <PerguntaFechada>
+                   <p>{perguntas.pergunta}</p>
+                    <img onClick={() => showTheQuestion(index)} src={perguntas.autoplay}
+                        alt={perguntas.alt} />
+                </PerguntaFechada>
             }
 
-            {mostrarPergunta && <PerguntaAberta>
-                <h1>{perguntas.Q}</h1>
-                <img onClick={() => showTheAnswer(index)} src={perguntas.setinha}
-                    alt={perguntas.alt} />
-            </PerguntaAberta>
+            {mostrarPergunta &&
+                <PerguntaAberta>
+                    <h1>{perguntas.Q}</h1>
+                    <img onClick={() => showTheAnswer(index)} src={perguntas.setinha}
+                        alt={perguntas.alt} />
+                </PerguntaAberta>
             }
-            
-            {mostrarResposta && <Resposta>
-                <h1>{perguntas.R}</h1>
-                <ContainerBotoes>
-                    <BotaoVermelho>Não<br />lembrei!</BotaoVermelho>
-                    <BotaoLaranja>Quase não<br /> lembrei!</BotaoLaranja>
-                    <BotaoVerde>Zap!</BotaoVerde>
-                </ContainerBotoes>
-            </Resposta>
+
+            {mostrarResposta &&
+                <Resposta>
+                    <h1>{perguntas.R}</h1>
+                    <ContainerBotoes>
+                        <BotaoVermelho onClick={showCardAnswerRed}>Não<br />lembrei!</BotaoVermelho>
+                        <BotaoLaranja>Quase não<br /> lembrei!</BotaoLaranja>
+                        <BotaoVerde>Zap!</BotaoVerde>
+                    </ContainerBotoes>
+                </Resposta>
+            }
+
+            {corVermelho &&
+                <CartaoRespostaErrada>
+                    <p>{perguntas.pergunta}</p>
+                    <img src={perguntas.erro}
+                        alt={perguntas.alt} />
+                </CartaoRespostaErrada>
             }
         </>
     )
@@ -62,8 +81,9 @@ const PerguntaFechada = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #333333;
+  color: ${props => props.corVermelho ? "red" : ""};
   background-color: white;
+  text-decoration: ${props => props.corVermelho ? "line-through" : ""};
   }
   img{
     width:15px;
@@ -180,4 +200,32 @@ width: 90px;
   border-radius: 5px;
   border: 1px solid blue;
   padding:5px;
+`
+const CartaoRespostaErrada = styled.div`
+  width: 300px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px;
+  padding: 15px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  p{
+  font-family: 'Recursive';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: ${props => props.corVermelho ? "black" : "#FF0000"};
+  background-color: white;
+  text-decoration: ${props => props.corVermelho ? "none" : "line-through"};
+  }
+  img{
+    width:15px;
+    height:15px;
+    background-color: white;
+    cursor: pointer;
+  }
 `

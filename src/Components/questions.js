@@ -1,5 +1,8 @@
 import autoplay from "../assets/img/seta_play.png";
 import setinha from "../assets/img/seta_virar.png";
+import erro from "../assets/img/icone_erro.png";
+import certo from "../assets/img/icone_certo.png";
+import quase from "../assets/img/icone_quase.png";
 const questions =
     [
         {
@@ -8,7 +11,10 @@ const questions =
             alt: "texto alternativo",
             Q: "O que é JSX?",
             setinha,
-            R: "Uma extensão de linguagem do JavaScript"
+            R: "Uma extensão de linguagem do JavaScript",
+            erro,
+            certo,
+            quase
         },
         {
             pergunta: "Pergunta 2",
@@ -16,7 +22,10 @@ const questions =
             alt: "texto alternativo",
             Q: "O React é __",
             setinha,
-            R: "uma biblioteca JavaScript para construção de interfaces"
+            R: "uma biblioteca JavaScript para construção de interfaces",
+            erro,
+            certo,
+            quase
         },
         {
             pergunta: "Pergunta 3",
@@ -24,7 +33,10 @@ const questions =
             alt: "texto alternativo",
             Q: "Componentes devem iniciar com __ ",
             setinha,
-            R: "letra maiúscula"
+            R: "letra maiúscula",
+            erro,
+            certo,
+            quase
         },
         {
             pergunta: "Pergunta 4",
@@ -32,7 +44,10 @@ const questions =
             alt: "texto alternativo",
             Q: "Podemos colocar __ dentro do JSX",
             setinha,
-            R: "expressões"
+            R: "expressões",
+            erro,
+            certo,
+            quase
         }
     ];
-    export default questions;
+export default questions;
