@@ -4,9 +4,11 @@ export default function Card({ perguntas, index }) {
     const [cartaoFechado, setCartaoFechado] = useState(true);
     const [mostrarPergunta, setMostrarPergunta] = useState(false);
     const [mostrarResposta, setMostrarResposta] = useState(false);
+    const [imagem, setImagem] = useState("");
     const [corVermelho, setCorVermelho] = useState(false);
     const [corLaranja, setCorLaranja] = useState(false);
     const [corVerde, setCorVerde] = useState(false);
+    const [contador, setContador] = useState(0);
     function showTheQuestion(index) {
         setMostrarPergunta(true);
         setCartaoFechado(false);
@@ -19,15 +21,34 @@ export default function Card({ perguntas, index }) {
         setCartaoFechado(false);
     }
     function showCardAnswerRed() {
+        const cartoesRespondidos = contador + 1;
         setMostrarResposta(false);
         setCorVermelho(true);
+        setContador(cartoesRespondidos);
+        setImagem(perguntas.erro);
         console.log("Clicado");
+    }
+    function showCardAnswerOrange() {
+        const cartoesRespondidos = contador + 1;
+        setMostrarResposta(false);
+        setCorLaranja(true);
+        setImagem(perguntas.quase);
+        setContador(cartoesRespondidos);
+    }
+    function showCardAnswerGreen() {
+        const imagemCerto = perguntas.certo;
+        console.log(imagemCerto)
+        const cartoesRespondidos = contador + 1;
+        setMostrarResposta(false);
+        setCorVerde(true);
+        setImagem(imagemCerto);
+        setContador(cartoesRespondidos);
     }
     return (
         <>
             {cartaoFechado &&
                 <PerguntaFechada>
-                   <p>{perguntas.pergunta}</p>
+                    <p>{perguntas.pergunta}</p>
                     <img onClick={() => showTheQuestion(index)} src={perguntas.autoplay}
                         alt={perguntas.alt} />
                 </PerguntaFechada>
@@ -46,8 +67,8 @@ export default function Card({ perguntas, index }) {
                     <h1>{perguntas.R}</h1>
                     <ContainerBotoes>
                         <BotaoVermelho onClick={showCardAnswerRed}>Não<br />lembrei!</BotaoVermelho>
-                        <BotaoLaranja>Quase não<br /> lembrei!</BotaoLaranja>
-                        <BotaoVerde>Zap!</BotaoVerde>
+                        <BotaoLaranja onClick={showCardAnswerOrange}>Quase não<br /> lembrei!</BotaoLaranja>
+                        <BotaoVerde onClick={showCardAnswerGreen}>Zap!</BotaoVerde>
                     </ContainerBotoes>
                 </Resposta>
             }
@@ -59,6 +80,28 @@ export default function Card({ perguntas, index }) {
                         alt={perguntas.alt} />
                 </CartaoRespostaErrada>
             }
+
+            {corLaranja &&
+                <CartaoRespostaQuase>
+                    <p>{perguntas.pergunta}</p>
+                    <img src={perguntas.quase}
+                        alt={perguntas.alt} />
+                </CartaoRespostaQuase>
+            }
+
+            {corVerde &&
+                <CartaoRespostaCerto>
+                    <p>{perguntas.pergunta}</p>
+                    <img src={perguntas.certo}
+                        alt={perguntas.alt} />
+                </CartaoRespostaCerto>
+            }
+
+            <Rodape>
+                <p>{contador}/{index.length} CONCLUÍDOS</p>
+                <img src={imagem} alt={perguntas.alt} />
+            </Rodape>
+
         </>
     )
 }
@@ -185,7 +228,7 @@ const BotaoLaranja = styled.button`
   padding:5px;
 `
 const BotaoVerde = styled.button`
-width: 90px;
+ width: 90px;
   font-family: 'Recursive';
   font-style: normal;
   font-weight: 400;
@@ -221,6 +264,87 @@ const CartaoRespostaErrada = styled.div`
   color: ${props => props.corVermelho ? "black" : "#FF0000"};
   background-color: white;
   text-decoration: ${props => props.corVermelho ? "none" : "line-through"};
+  }
+  img{
+    width:15px;
+    height:15px;
+    background-color: white;
+    cursor: pointer;
+  }
+`
+const CartaoRespostaQuase = styled.div`
+  width: 300px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px;
+  padding: 15px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  p{
+  font-family: 'Recursive';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: ${props => props.corLaranja ? "black" : "#FF922E"};
+  background-color: white;
+  text-decoration: ${props => props.corLaranja ? "none" : "line-through"};
+  }
+  img{
+    width:15px;
+    height:15px;
+    background-color: white;
+    cursor: pointer;
+  }
+`
+const CartaoRespostaCerto = styled.div`
+ width: 300px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px;
+  padding: 15px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  p{
+  font-family: 'Recursive';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: ${props => props.corVerde ? "black" : "#2FBE34"};
+  background-color: white;
+  text-decoration: ${props => props.corVerde ? "none" : "line-through"};
+  }
+  img{
+    width:15px;
+    height:15px;
+    background-color: white;
+    cursor: pointer;
+  }
+`
+const Rodape = styled.div`
+  width: 100%;
+  min-height: 50px;
+  background-color: #FFFFFF;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  p{
+    font-family: 'Recursive';
+  font-weight: 400;
+  font-size: 18px;
+  color: #333333;
+  background-color:white;
   }
   img{
     width:15px;

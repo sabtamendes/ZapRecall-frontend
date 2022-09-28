@@ -4,7 +4,7 @@ import styled from "styled-components";
 import logo from "../assets/img/logo.png";
 
 export default function App() {
-  
+
     return (
         <>
             <GlobalStyled />
@@ -16,7 +16,7 @@ export default function App() {
                 </LogoContainer>
 
                 <Cards />
-
+         
             </ScreenContainer>
         </>
     )
