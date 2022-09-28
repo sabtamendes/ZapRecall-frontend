@@ -1,14 +1,14 @@
-
 import GlobalStyle from "../assets/css/GlobalStyle";
 import styled from "styled-components";
 
 import logo from "../assets/img/logo.png";
-import Autoplay from "../assets/img/play-outline-icon.svg";
 
-import FlashCard from "./FlashCard";
-const perguntas = ["Pergunta 1", "Pergunta 2", "Pergunta 3", "Pergunta 4"];
-const autoplayIcon = [Autoplay]
+
+import Cards from "./Cards";
+
+// const autoplayIcon = [Autoplay]
 export default function App() {
+
     return (
         <>
             <Header>
@@ -18,7 +18,10 @@ export default function App() {
 
             <Main>
 
-                <FlashCard
+                <Cards />
+                
+                
+                {/* <FlashCard
                     question={perguntas[0]}
                     autoplay={autoplayIcon[0]}
                         alt="texto alternativo"
@@ -40,10 +43,10 @@ export default function App() {
                     question={perguntas[3]}
                     autoplay={autoplayIcon[0]}
                     alt="texto alternativo"
-                />
+                /> */}
 
             </Main>
-            
+
             <Footer>
                 <button>Não <br />lembrei!</button>
                 <button>Quase não <br />lembrei!</button>
@@ -75,7 +78,6 @@ const Main = styled.div`
     margin-bottom:50px;
 `
 
-
 const Footer = styled.div`
     position: fixed;
     bottom: 0;
@@ -98,7 +100,7 @@ const Footer = styled.div`
     button{
     width: 100%;
     height: 40px;
-    background-color: green; /* fazer props */
+    background-color: green; /*fazer props */
     color: #FFFFFF;
     font-family: cursive;
     font-size: 14px;
@@ -116,7 +118,7 @@ const Footer = styled.div`
     font-size: 18px;
     line-height: 100%;
     vertical-align: Top;
-    color: Solid #333333;
+    color:#333333;
     background-color: white;    
     }
 `

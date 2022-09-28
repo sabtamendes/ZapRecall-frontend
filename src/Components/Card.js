@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
-export default function FlashCard(props) {
-    const { autoplay, question, alt } = props;
-    console.log(props)
+export default function Card({perguntas, clicar}) {
     return (
-        <Card>
-            {question}
-            <img src={autoplay} alt={alt} />
-        </Card>
+        <FlashCard>
+            {perguntas.pergunta}
+            <img onClick={clicar} src={perguntas.autoplay} alt={perguntas.alt} />
+        </FlashCard>
     )
 }
 
-const Card = styled.div`
+const FlashCard = styled.div`
     width: 300px;
     height: 50px;
     display: flex;
