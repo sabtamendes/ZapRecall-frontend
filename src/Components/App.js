@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function App() {
     const [imagemRenderizada, setImagemRenderizada] = useState([]);
-   
+
     return (
         <>
             <GlobalStyled />

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-
+@media(max-width:614px){
 *{
 	box-sizing: border-box;
 	--cor-fundo: #FB6B6B;
@@ -65,6 +65,7 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
 }
 `
 export default GlobalStyle;

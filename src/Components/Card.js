@@ -19,12 +19,14 @@ export default function Card({ perguntas, setImagemRenderizada, imagemRenderizad
     setMostrarPergunta(false);
     setCartaoFechado(false);
   }
+
   function showCardAnswerRed(image) {
     const imagemvermelho = image;
     setImagemRenderizada([...imagemRenderizada, imagemvermelho]);
     setMostrarResposta(false);
     setCorVermelho(true);
   }
+
   function showCardAnswerOrange(image) {
     const imagemLaranja = image;
     setImagemRenderizada([...imagemRenderizada, imagemLaranja]);
@@ -32,12 +34,12 @@ export default function Card({ perguntas, setImagemRenderizada, imagemRenderizad
     setCorLaranja(true);
 
   }
+
   function showCardAnswerGreen(image) {
     const imagemVerde = image;
     setImagemRenderizada([...imagemRenderizada, imagemVerde])
     setMostrarResposta(false);
     setCorVerde(true);
-
   }
 
   return (
@@ -136,7 +138,7 @@ const PerguntaAberta = styled.div`
   font-family: 'Recursive';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   color: #333333;
   position: relative;
@@ -165,7 +167,7 @@ const Resposta = styled.div`
   font-family: 'Recursive';
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   color: #333333;
   position: relative;
