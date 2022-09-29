@@ -2,9 +2,12 @@ import GlobalStyled from "../assets/css/GlobalStyle";
 import Cards from "../Components/Cards";
 import styled from "styled-components";
 import logo from "../assets/img/logo.png";
+import Footer from "./Footer";
+import { useState } from "react";
 
 export default function App() {
-
+    const [imagemRenderizada, setImagemRenderizada] = useState([]);
+   
     return (
         <>
             <GlobalStyled />
@@ -15,8 +18,15 @@ export default function App() {
                     <h1>ZappRecall</h1>
                 </LogoContainer>
 
-                <Cards />
-         
+                <Cards
+                    imagemRenderizada={imagemRenderizada}
+                    setImagemRenderizada={setImagemRenderizada}
+                />
+
+                <Footer
+                    imagemRenderizada={imagemRenderizada}
+                />
+
             </ScreenContainer>
         </>
     )

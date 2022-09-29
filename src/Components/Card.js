@@ -1,55 +1,51 @@
 import styled from "styled-components";
 import { useState } from "react";
-export default function Card({ perguntas, index }) {
+
+export default function Card({ perguntas, setImagemRenderizada, imagemRenderizada }) {
   const [cartaoFechado, setCartaoFechado] = useState(true);
   const [mostrarPergunta, setMostrarPergunta] = useState(false);
   const [mostrarResposta, setMostrarResposta] = useState(false);
-  const [imagem, setImagem] = useState("");
   const [corVermelho, setCorVermelho] = useState(false);
   const [corLaranja, setCorLaranja] = useState(false);
   const [corVerde, setCorVerde] = useState(false);
-  const [contador, setContador] = useState(0);
-  function showTheQuestion(index) {
+
+  function showTheQuestion() {
     setMostrarPergunta(true);
     setCartaoFechado(false);
-    console.log(perguntas.Q, index)
   }
-  function showTheAnswer(index) {
-    console.log(perguntas.Q, index)
+
+  function showTheAnswer() {
     setMostrarResposta(true);
     setMostrarPergunta(false);
     setCartaoFechado(false);
   }
-  function showCardAnswerRed() {
-    const cartoesRespondidos = contador + 1;
+  function showCardAnswerRed(image) {
+    const imagemvermelho = image;
+    setImagemRenderizada([...imagemRenderizada, imagemvermelho]);
     setMostrarResposta(false);
     setCorVermelho(true);
-    setContador(cartoesRespondidos);
-    setImagem(perguntas.erro);
-    console.log("Clicado");
   }
-  function showCardAnswerOrange() {
-    const cartoesRespondidos = contador + 1;
+  function showCardAnswerOrange(image) {
+    const imagemLaranja = image;
+    setImagemRenderizada([...imagemRenderizada, imagemLaranja]);
     setMostrarResposta(false);
     setCorLaranja(true);
-    setImagem(perguntas.quase);
-    setContador(cartoesRespondidos);
+
   }
-  function showCardAnswerGreen() {
-    const imagemCerto = perguntas.certo;
-    console.log(imagemCerto)
-    const cartoesRespondidos = contador + 1;
+  function showCardAnswerGreen(image) {
+    const imagemVerde = image;
+    setImagemRenderizada([...imagemRenderizada, imagemVerde])
     setMostrarResposta(false);
     setCorVerde(true);
-    setImagem(imagemCerto);
-    setContador(cartoesRespondidos);
+
   }
+
   return (
     <>
       {cartaoFechado &&
         <PerguntaFechada>
           <p>{perguntas.pergunta}</p>
-          <img onClick={() => showTheQuestion(index)} src={perguntas.autoplay}
+          <img onClick={showTheQuestion} src={perguntas.autoplay}
             alt={perguntas.alt} />
         </PerguntaFechada>
       }
@@ -57,7 +53,7 @@ export default function Card({ perguntas, index }) {
       {mostrarPergunta &&
         <PerguntaAberta>
           <h1>{perguntas.Q}</h1>
-          <img onClick={() => showTheAnswer(index)} src={perguntas.setinha}
+          <img onClick={showTheAnswer} src={perguntas.setinha}
             alt={perguntas.alt} />
         </PerguntaAberta>
       }
@@ -66,9 +62,9 @@ export default function Card({ perguntas, index }) {
         <Resposta>
           <h1>{perguntas.R}</h1>
           <ContainerBotoes>
-            <BotaoVermelho onClick={showCardAnswerRed}>Não<br />lembrei!</BotaoVermelho>
-            <BotaoLaranja onClick={showCardAnswerOrange}>Quase não<br /> lembrei!</BotaoLaranja>
-            <BotaoVerde onClick={showCardAnswerGreen}>Zap!</BotaoVerde>
+            <BotaoVermelho onClick={() => showCardAnswerRed(perguntas.erro)}>Não<br />lembrei!</BotaoVermelho>
+            <BotaoLaranja onClick={() => showCardAnswerOrange(perguntas.quase)}>Quase não<br /> lembrei!</BotaoLaranja>
+            <BotaoVerde onClick={() => showCardAnswerGreen(perguntas.certo)}>Zap!</BotaoVerde>
           </ContainerBotoes>
         </Resposta>
       }
@@ -96,12 +92,6 @@ export default function Card({ perguntas, index }) {
             alt={perguntas.alt} />
         </CartaoRespostaCerto>
       }
-
-      <Rodape>
-        <p>{contador}/{index + 1} CONCLUÍDOS</p>
-        <img src={imagem[index + 1]} alt={perguntas.alt} />
-      </Rodape>
-
     </>
   )
 }
@@ -165,7 +155,7 @@ const PerguntaAberta = styled.div`
   }
   `
 const Resposta = styled.div`
- width: 300px;
+  width: 300px;
   margin: 12px;
   padding: 15px;
   min-height: 100px;
@@ -213,7 +203,7 @@ const BotaoVermelho = styled.button`
   margin: 5px;
 `
 const BotaoLaranja = styled.button`
- width: 90px;
+  width: 90px;
   font-family: 'Recursive';
   font-style: normal;
   font-weight: 400;
@@ -324,31 +314,6 @@ const CartaoRespostaCerto = styled.div`
   color: ${props => props.corVerde ? "black" : "#2FBE34"};
   background-color: white;
   text-decoration: ${props => props.corVerde ? "none" : "line-through"};
-  }
-  img{
-    width:15px;
-    height:15px;
-    background-color: white;
-    cursor: pointer;
-  }
-`
-const Rodape = styled.div`
-  width: 100%;
-  min-height: 50px;
-  background-color: #FFFFFF;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  p{
-    font-family: 'Recursive';
-  font-weight: 400;
-  font-size: 18px;
-  color: #333333;
-  background-color:white;
   }
   img{
     width:15px;
