@@ -8,14 +8,14 @@ export default function Cards(
 
     return (
         <>
-           {perguntas.map((item, i) =>
+            {perguntas.map((item, i) =>
                 <Card
                     setImagemRenderizada={setImagemRenderizada}
                     imagemRenderizada={imagemRenderizada}
                     perguntas={item}
                     index={i}
                     key={i} />)
-            } 
+            }
         </>
     )
 }

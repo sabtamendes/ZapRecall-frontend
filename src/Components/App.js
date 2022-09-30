@@ -1,22 +1,35 @@
 import GlobalStyled from "../assets/css/GlobalStyle";
 import Cards from "../Components/Cards";
 import styled from "styled-components";
-import logo from "../assets/img/logo.png";
+import Header from "./Header";
+import Home from "./Home";
 import Footer from "./Footer";
 import { useState } from "react";
 
 export default function App() {
+    const [homePage, setHomePage] = useState("visible");
+    const [flashCardPage, setFlashCardPage] = useState(false);
     const [imagemRenderizada, setImagemRenderizada] = useState([]);
 
+    function page() {
+        if (homePage) {
+            setHomePage("hidden");
+            setFlashCardPage(true);
+        }
+    }
     return (
         <>
             <GlobalStyled />
+
             <ScreenContainer>
 
-                <LogoContainer>
-                    <img src={logo} alt="texto alternativo" />
-                    <h1>ZappRecall</h1>
-                </LogoContainer>
+                <Home
+                    page={page}
+                    homePage={homePage}
+                    flashCardPage={flashCardPage}
+                />
+
+                <Header />
 
                 <Cards
                     imagemRenderizada={imagemRenderizada}
@@ -32,23 +45,7 @@ export default function App() {
     )
 }
 
-const LogoContainer = styled.div`
- display: flex;
-  align-items: center;
-  margin: 40px 0 20px 0;
- h1{
- font-family: 'Righteous';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 45px;
-  color: #FFFFFF;
-  margin-left: 20px;
- }
- img{
-    width: 52px;
- }
-`
+
 const ScreenContainer = styled.div`
   background-color: #FB6B6B;
   width: 100vw;

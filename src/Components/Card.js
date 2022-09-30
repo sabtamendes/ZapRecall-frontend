@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Card({ perguntas, setImagemRenderizada, imagemRenderizada }) {
+export default function Card({ perguntas, setImagemRenderizada, imagemRenderizada}) {
   const [cartaoFechado, setCartaoFechado] = useState(true);
   const [mostrarPergunta, setMostrarPergunta] = useState(false);
   const [mostrarResposta, setMostrarResposta] = useState(false);

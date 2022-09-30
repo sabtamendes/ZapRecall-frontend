@@ -2,16 +2,16 @@ import styled from "styled-components";
 import perguntas from "./questions";
 export default function Footer({ imagemRenderizada}){
     return(
-        <Rodape>
+        <Baseboard>
               <p>{imagemRenderizada.length}/{perguntas.length} CONCLUÍDOS</p>
               <div>
                 {imagemRenderizada.map((item, i) => <img key={i} src={item} alt={perguntas.alt} />)}
               </div>
-            </Rodape>
+            </Baseboard>
     )
 }
 
-const Rodape = styled.div`
+const Baseboard = styled.div`
   width: 100%;
   min-height: 50px;
   background-color: #FFFFFF;
