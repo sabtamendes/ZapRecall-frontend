@@ -1,17 +1,18 @@
 import styled from "styled-components";
-export default function PageLoader() {
-    return (
-        <Main>
-            <Loader>
-                <Box></Box>
-                <Hill></Hill>
-            </Loader>
-        </Main>
+export default function PageLoader({ isLoading }) {
+  return (
+    <Main isLoading={isLoading}>
+      <Loader>
+        <Box></Box>
+        <Hill></Hill>
+      </Loader>
+    </Main>
 
-    )
+  )
 }
 
 const Main = styled.div`
+    visibility: ${props => props.isLoading ? "visible" : "hidden"};
     width: 100%;
     height: 100%;
     display: flex;
@@ -60,8 +61,8 @@ const Box = styled.div`
     position: absolute;
     left: 0;
     bottom: -.1em;
-    width: 1em;
-    height: 1em;
+    width: 2em;
+    height: 2em;
     background-color: transparent;
     border: .25em solid whitesmoke;
     border-radius: 15%;

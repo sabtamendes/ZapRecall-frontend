@@ -10,14 +10,23 @@ import { useState } from "react";
 export default function App() {
     const [homePage, setHomePage] = useState("visible");
     const [flashCardPage, setFlashCardPage] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [imagemRenderizada, setImagemRenderizada] = useState([]);
 
     function page() {
         if (homePage) {
             setHomePage("hidden");
-            setFlashCardPage(true);
         }
+        spinner();
     }
+    function spinner() {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            setFlashCardPage(true);
+        }, 3800)
+    }
+
     return (
         <>
             <GlobalStyled />
@@ -28,9 +37,11 @@ export default function App() {
                     page={page}
                     homePage={homePage}
                     flashCardPage={flashCardPage}
+                    setIsLoading={setIsLoading}
                 />
 
-                <PageLoader />
+                <PageLoader
+                    isLoading={isLoading} />
 
                 <Header />
 
