@@ -1,25 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
-@media(max-width:614px){
+@media(max-width:414px){
 *{
 	box-sizing: border-box;
-	--cor-fundo: #FB6B6B;
-    --cor-fundo-card: #FFFFD4;
-    --cor-nao-lembrei: #FF3030;
-    --cor-quase-nao-lembrei: #FF922E;
-    --cor-zap: #2FBE34;
-    --preto: #333333;
-}
-
-body{
-	width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--preto);
-    font-family: 'Recursive', sans-serif;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -50,6 +34,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Recursive', sans-serif;
 }
 ol, ul {
 	list-style: none;

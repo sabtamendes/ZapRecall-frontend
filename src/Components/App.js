@@ -2,6 +2,7 @@ import GlobalStyled from "../assets/css/GlobalStyle";
 import Cards from "../Components/Cards";
 import styled from "styled-components";
 import Header from "./Header";
+import PageLoader from "./PageLoader";
 import Home from "./Home";
 import Footer from "./Footer";
 import { useState } from "react";
@@ -28,6 +29,8 @@ export default function App() {
                     homePage={homePage}
                     flashCardPage={flashCardPage}
                 />
+
+                <PageLoader />
 
                 <Header />
 
