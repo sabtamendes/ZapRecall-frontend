@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import perguntas from "./questions";
-export default function Footer({ imagemRenderizada}){
+import questions from "./questions";
+export default function Footer({ renderingFooterImage}){
     return(
         <Baseboard>
-              <p>{imagemRenderizada.length}/{perguntas.length} CONCLUÍDOS</p>
+              <p>{renderingFooterImage.length}/{questions.length} CONCLUÍDOS</p>
               <div>
-                {imagemRenderizada.map((item, i) => <img key={i} src={item} alt={perguntas.alt} />)}
+                {renderingFooterImage.map((item, i) => <img key={i} src={item} alt={questions.alt} />)}
               </div>
             </Baseboard>
     )

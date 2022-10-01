@@ -8,6 +8,7 @@ export default function Header() {
         </LogoContainer>
     )
 }
+
 const LogoContainer = styled.div`
  display: flex;
   align-items: center;

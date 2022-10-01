@@ -11,7 +11,7 @@ export default function App() {
     const [homePage, setHomePage] = useState("visible");
     const [flashCardPage, setFlashCardPage] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [imagemRenderizada, setImagemRenderizada] = useState([]);
+    const [renderingFooterImage, setRenderingFooterImage] = useState([]);
 
     function page() {
         if (homePage) {
@@ -46,12 +46,12 @@ export default function App() {
                 <Header />
 
                 <Cards
-                    imagemRenderizada={imagemRenderizada}
-                    setImagemRenderizada={setImagemRenderizada}
+                    renderingFooterImage={renderingFooterImage}
+                    setRenderingFooterImage={setRenderingFooterImage}
                 />
 
                 <Footer
-                    imagemRenderizada={imagemRenderizada}
+                    renderingFooterImage={renderingFooterImage}
                 />
 
             </ScreenContainer>

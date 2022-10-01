@@ -1,104 +1,104 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function Card({ perguntas, setImagemRenderizada, imagemRenderizada}) {
-  const [cartaoFechado, setCartaoFechado] = useState(true);
-  const [mostrarPergunta, setMostrarPergunta] = useState(false);
-  const [mostrarResposta, setMostrarResposta] = useState(false);
-  const [corVermelho, setCorVermelho] = useState(false);
-  const [corLaranja, setCorLaranja] = useState(false);
-  const [corVerde, setCorVerde] = useState(false);
+export default function Card({ questions, setRenderingFooterImage, renderingFooterImage }) {
+  const [closedCard, setClosedCard] = useState(true);
+  const [cardQuestion, setCardQuestion] = useState(false);
+  const [answerCard, setAnswerCard] = useState(false);
+  const [colorRed, setColorRed] = useState(false);
+  const [colorOrange, setColorOrange] = useState(false);
+  const [colorGreen, setColorGreen] = useState(false);
 
   function showTheQuestion() {
-    setMostrarPergunta(true);
-    setCartaoFechado(false);
+    setCardQuestion(true);
+    setClosedCard(false);
   }
 
   function showTheAnswer() {
-    setMostrarResposta(true);
-    setMostrarPergunta(false);
-    setCartaoFechado(false);
+    setAnswerCard(true);
+    setCardQuestion(false);
+    setClosedCard(false);
   }
 
   function showCardAnswerRed(image) {
-    const imagemvermelho = image;
-    setImagemRenderizada([...imagemRenderizada, imagemvermelho]);
-    setMostrarResposta(false);
-    setCorVermelho(true);
+    const redImage = image;
+    setRenderingFooterImage([...renderingFooterImage, redImage]);
+    setAnswerCard(false);
+    setColorRed(true);
   }
 
   function showCardAnswerOrange(image) {
-    const imagemLaranja = image;
-    setImagemRenderizada([...imagemRenderizada, imagemLaranja]);
-    setMostrarResposta(false);
-    setCorLaranja(true);
+    const orangeImage = image;
+    setRenderingFooterImage([...renderingFooterImage, orangeImage]);
+    setAnswerCard(false);
+    setColorOrange(true);
 
   }
 
   function showCardAnswerGreen(image) {
-    const imagemVerde = image;
-    setImagemRenderizada([...imagemRenderizada, imagemVerde])
-    setMostrarResposta(false);
-    setCorVerde(true);
+    const greenImage = image;
+    setRenderingFooterImage([...renderingFooterImage, greenImage])
+    setAnswerCard(false);
+    setColorGreen(true);
   }
 
   return (
     <>
-      {cartaoFechado &&
-        <PerguntaFechada>
-          <p>{perguntas.pergunta}</p>
-          <img onClick={showTheQuestion} src={perguntas.autoplay}
-            alt={perguntas.alt} />
-        </PerguntaFechada>
+      {closedCard &&
+        <ClosedQuestion>
+          <p>{questions.pergunta}</p>
+          <img onClick={showTheQuestion} src={questions.autoplay}
+            alt={questions.alt} />
+        </ClosedQuestion>
       }
 
-      {mostrarPergunta &&
-        <PerguntaAberta>
-          <h1>{perguntas.Q}</h1>
-          <img onClick={showTheAnswer} src={perguntas.setinha}
-            alt={perguntas.alt} />
-        </PerguntaAberta>
+      {cardQuestion &&
+        <OpeningQuestion>
+          <h1>{questions.Q}</h1>
+          <img onClick={showTheAnswer} src={questions.setinha}
+            alt={questions.alt} />
+        </OpeningQuestion>
       }
 
-      {mostrarResposta &&
-        <Resposta>
-          <h1>{perguntas.R}</h1>
+      {answerCard &&
+        <Answer>
+          <h1>{questions.R}</h1>
           <ContainerBotoes>
-            <BotaoVermelho onClick={() => showCardAnswerRed(perguntas.erro)}>Não<br />lembrei!</BotaoVermelho>
-            <BotaoLaranja onClick={() => showCardAnswerOrange(perguntas.quase)}>Quase não<br /> lembrei!</BotaoLaranja>
-            <BotaoVerde onClick={() => showCardAnswerGreen(perguntas.certo)}>Zap!</BotaoVerde>
+            <RedButton onClick={() => showCardAnswerRed(questions.erro)}>Não<br />lembrei!</RedButton>
+            <OrangeButton onClick={() => showCardAnswerOrange(questions.quase)}>Quase não<br /> lembrei!</OrangeButton>
+            <GreenButton onClick={() => showCardAnswerGreen(questions.certo)}>Zap!</GreenButton>
           </ContainerBotoes>
-        </Resposta>
+        </Answer>
       }
 
-      {corVermelho &&
-        <CartaoRespostaErrada>
-          <p>{perguntas.pergunta}</p>
-          <img src={perguntas.erro}
-            alt={perguntas.alt} />
-        </CartaoRespostaErrada>
+      {colorRed &&
+        <WrongAnswerCard>
+          <p>{questions.pergunta}</p>
+          <img src={questions.erro}
+            alt={questions.alt} />
+        </WrongAnswerCard>
       }
 
-      {corLaranja &&
-        <CartaoRespostaQuase>
-          <p>{perguntas.pergunta}</p>
-          <img src={perguntas.quase}
-            alt={perguntas.alt} />
-        </CartaoRespostaQuase>
+      {colorOrange &&
+        <AlmostAnswerCard>
+          <p>{questions.pergunta}</p>
+          <img src={questions.quase}
+            alt={questions.alt} />
+        </AlmostAnswerCard>
       }
 
-      {corVerde &&
-        <CartaoRespostaCerto>
-          <p>{perguntas.pergunta}</p>
-          <img src={perguntas.certo}
-            alt={perguntas.alt} />
-        </CartaoRespostaCerto>
+      {colorGreen &&
+        <RightAnswerCard>
+          <p>{questions.pergunta}</p>
+          <img src={questions.certo}
+            alt={questions.alt} />
+        </RightAnswerCard>
       }
     </>
   )
 }
 
-const PerguntaFechada = styled.div`
+const ClosedQuestion = styled.div`
   width: 300px;
   height: 35px;
   display: flex;
@@ -109,16 +109,16 @@ const PerguntaFechada = styled.div`
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
   background-color: #FFFFFF;
   border-radius: 5px;
-  display: ${props => props.cartaoFechado ? "none" : ""};
+  display: ${props => props.closedCard ? "none" : ""};
   p{
   font-family: 'Recursive';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: ${props => props.corVermelho ? "red" : ""};
+  color: ${props => props.colorRed ? "red" : ""};
   background-color: white;
-  text-decoration: ${props => props.corVermelho ? "line-through" : ""};
+  text-decoration: ${props => props.colorRed ? "line-through" : ""};
   }
   img{
     width:15px;
@@ -127,7 +127,7 @@ const PerguntaFechada = styled.div`
     cursor: pointer;
   }
 `
-const PerguntaAberta = styled.div`
+const OpeningQuestion = styled.div`
   width: 300px;
   margin: 12px;
   padding: 15px;
@@ -145,7 +145,7 @@ const PerguntaAberta = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  display: ${props => props.mostrarResposta ? "none" : ""};
+  display: ${props => props.answerCard ? "none" : ""};
   h1{
     background: #FFFFD5;
   }
@@ -156,7 +156,7 @@ const PerguntaAberta = styled.div`
   background-color: white;
   }
   `
-const Resposta = styled.div`
+const Answer = styled.div`
   width: 300px;
   margin: 12px;
   padding: 15px;
@@ -186,7 +186,7 @@ const ContainerBotoes = styled.div`
   padding: 15px;
   background: #FFFFD5;
 `
-const BotaoVermelho = styled.button`
+const RedButton = styled.button`
   width: 90px;
   font-family: 'Recursive';
   font-style: normal;
@@ -204,7 +204,7 @@ const BotaoVermelho = styled.button`
   padding:5px;
   margin: 5px;
 `
-const BotaoLaranja = styled.button`
+const OrangeButton = styled.button`
   width: 90px;
   font-family: 'Recursive';
   font-style: normal;
@@ -222,7 +222,7 @@ const BotaoLaranja = styled.button`
   padding:5px;
   margin: 5px;
 `
-const BotaoVerde = styled.button`
+const GreenButton = styled.button`
  width: 90px;
   font-family: 'Recursive';
   font-style: normal;
@@ -240,7 +240,7 @@ const BotaoVerde = styled.button`
   padding:5px;
   margin: 5px;
 `
-const CartaoRespostaErrada = styled.div`
+const WrongAnswerCard = styled.div`
   width: 300px;
   height: 35px;
   display: flex;
@@ -257,8 +257,8 @@ const CartaoRespostaErrada = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: ${props => props.corVermelho ? "black" : "#FF0000"};
-  text-decoration: ${props => props.corVermelho ? "none" : "line-through"};
+  color: ${props => props.colorRed ? "black" : "#FF0000"};
+  text-decoration: ${props => props.colorRed ? "none" : "line-through"};
   background-color: #FFFFFF;
   }
   img{
@@ -268,7 +268,7 @@ const CartaoRespostaErrada = styled.div`
     cursor: pointer;
   }
 `
-const CartaoRespostaQuase = styled.div`
+const AlmostAnswerCard = styled.div`
   width: 300px;
   height: 35px;
   display: flex;
@@ -285,9 +285,9 @@ const CartaoRespostaQuase = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: ${props => props.corLaranja ? "black" : "#FF922E"};
+  color: ${props => props.colorOrange ? "black" : "#FF922E"};
   background-color: white;
-  text-decoration: ${props => props.corLaranja ? "none" : "line-through"};
+  text-decoration: ${props => props.colorOrange ? "none" : "line-through"};
   }
   img{
     width:15px;
@@ -296,7 +296,7 @@ const CartaoRespostaQuase = styled.div`
     cursor: pointer;
   }
 `
-const CartaoRespostaCerto = styled.div`
+const RightAnswerCard = styled.div`
  width: 300px;
   height: 35px;
   display: flex;
@@ -313,9 +313,9 @@ const CartaoRespostaCerto = styled.div`
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: ${props => props.corVerde ? "black" : "#2FBE34"};
+  color: ${props => props.colorGreen ? "black" : "#2FBE34"};
   background-color: white;
-  text-decoration: ${props => props.corVerde ? "none" : "line-through"};
+  text-decoration: ${props => props.colorGreen ? "none" : "line-through"};
   }
   img{
     width:15px;

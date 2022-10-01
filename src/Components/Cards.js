@@ -1,18 +1,18 @@
 import Card from "./Card";
-import perguntas from "../Components/questions";
+import questions from "../Components/questions";
 export default function Cards(
-    { setImagemRenderizada,
-        imagemRenderizada
+    { setRenderingFooterImage,
+        renderingFooterImage
     }
 ) {
 
     return (
         <>
-            {perguntas.map((item, i) =>
+            {questions.map((item, i) =>
                 <Card
-                    setImagemRenderizada={setImagemRenderizada}
-                    imagemRenderizada={imagemRenderizada}
-                    perguntas={item}
+                    setRenderingFooterImage={setRenderingFooterImage}
+                    renderingFooterImage={renderingFooterImage}
+                    questions={item}
                     index={i}
                     key={i} />)
             }
