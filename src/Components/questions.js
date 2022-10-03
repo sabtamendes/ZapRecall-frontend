@@ -48,6 +48,52 @@ const questions =
             erro,
             certo,
             quase
+        },
+        {
+            pergunta: "Pergunta 5",
+            autoplay: autoplay,
+            alt: "texto alternativo",
+            Q: "O ReactDOM nos ajuda _",
+            setinha,
+            R: "interagindo com a DOM para colocar componentes React na mesma",
+            erro,
+            certo,
+            quase
+        },
+        {
+            pergunta: "Pergunta 6",
+            autoplay: autoplay,
+            alt: "texto alternativo",
+            Q: "Usamos o npm para _",
+            setinha,
+            R: "gerenciar os pacotes necessários e suas dependências",
+            erro,
+            certo,
+            quase
+        },
+        {
+            pergunta: "Pergunta 7",
+            autoplay: autoplay,
+            alt: "texto alternativo",
+            Q: "Usamos props para _",
+            setinha,
+            R: "passar diferentes informações para componentes",
+            erro,
+            certo,
+            quase
+        },
+        {
+            pergunta: "Pergunta 8",
+            autoplay: autoplay,
+            alt: "texto alternativo",
+            Q: "Usamos estado (state) para _",
+            setinha,
+            R: "dizer para o React quais informações quando atualizadas devem renderizar a tela novamente",
+            erro,
+            certo,
+            quase
         }
     ];
 export default questions;
+
+
