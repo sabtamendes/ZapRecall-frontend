@@ -9,7 +9,6 @@ import { useState } from "react";
 
 export default function App() {
     const [homePage, setHomePage] = useState("visible");
-    const [flashCardPage, setFlashCardPage] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [renderingFooterImage, setRenderingFooterImage] = useState([]);
 
@@ -23,7 +22,6 @@ export default function App() {
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-            setFlashCardPage(true);
         }, 3800)
     }
 
@@ -36,7 +34,6 @@ export default function App() {
                 <Home
                     page={page}
                     homePage={homePage}
-                    flashCardPage={flashCardPage}
                     setIsLoading={setIsLoading}
                 />
 
